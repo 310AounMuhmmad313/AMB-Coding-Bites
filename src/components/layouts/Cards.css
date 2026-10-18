@@ -1,0 +1,274 @@
+/* ---------- Dish card ---------- */
+.dish {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    border-color 0.4s;
+}
+.dish:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 26px 40px -26px rgba(42, 9, 16, 0.55);
+  border-color: rgba(201, 154, 46, 0.6);
+}
+.dish_media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bone-2);
+}
+.dish_compact .dish_media {
+  aspect-ratio: 16 / 10;
+}
+.dish_skel_img {
+  aspect-ratio: 4 / 3;
+  border-radius: 0;
+}
+.dish_open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.dish_open img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+.dish:hover .dish_open img {
+  transform: scale(1.07);
+}
+.dish_media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(22, 16, 14, 0.35), transparent);
+  pointer-events: none;
+}
+
+.dish_badge {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 2;
+  background: var(--gold);
+  color: var(--char);
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+.dish_featured {
+  border-color: rgba(201, 154, 46, 0.7);
+}
+.dish_heart {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--ox);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  transition:
+    transform 0.25s var(--ease),
+    background-color 0.2s;
+}
+.dish_heart:hover {
+  transform: scale(1.1);
+  background: #fff;
+}
+.dish_heart.active {
+  background: var(--ox);
+  color: var(--bone);
+}
+.dish_modal_foot .dish_heart {
+  position: static;
+  border: 1.5px solid var(--line);
+}
+.dish_modal_foot .dish_heart.active {
+  border-color: var(--ox);
+}
+
+.dish_body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.15rem 1.3rem 1.3rem;
+}
+.dish_rating {
+  color: var(--gold);
+  font-size: 0.82rem;
+  display: flex;
+  gap: 2px;
+}
+.dish_title {
+  font-size: 1.35rem;
+  margin: 0.45rem 0 0.4rem;
+}
+.dish_title button {
+  all: unset;
+  cursor: pointer;
+}
+.dish_title button:hover {
+  color: var(--ox);
+}
+.dish_title button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.dish_desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3; 
+  overflow: hidden;
+}
+
+.dish_footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+.dish_price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--ox);
+  font-variation-settings: "opsz" 48;
+}
+
+.dish_add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ox);
+  color: var(--bone);
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    transform 0.25s var(--ease);
+}
+.dish_add:hover {
+  background: var(--ox-deep);
+  transform: translateY(-2px);
+}
+.dish_add.is_added {
+  background: var(--gold);
+  color: var(--char);
+}
+.dish_add_lg {
+  min-height: 50px;
+  padding: 0.7rem 1.6rem;
+}
+
+.dish_modal .modal-content {
+  background: var(--card);
+}
+.dish_modal_close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(22, 16, 14, 0.75);
+  color: var(--bone);
+  display: grid;
+  place-items: center;
+}
+.dish_modal_close:hover {
+  background: var(--ox);
+}
+.dish_modal_grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+}
+.dish_modal_img {
+  min-height: 340px;
+  background: var(--bone-2);
+}
+.dish_modal_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.dish_modal_info {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  justify-content: center;
+}
+.dish_modal_info h3 {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin: 0;
+}
+.dish_modal_info p {
+  color: var(--muted);
+  margin: 0.3rem 0 0.8rem;
+}
+.dish_cat {
+  align-self: flex-start;
+  background: var(--bone-2);
+  color: var(--ox);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+.dish_modal_foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 767.98px) {
+  .dish_modal_grid {
+    grid-template-columns: 1fr;
+  }
+  .dish_modal_img {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
